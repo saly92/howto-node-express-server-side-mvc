@@ -1,11 +1,13 @@
 import express from 'express';
 import { siteData } from './src/models.js';
+import cors from 'cors'
 
 const app = express();
-const port = process.env.PORT || 3007;
+const port = process.env.PORT || 3000;
 const fullUrl = `http://localhost:${port}`;
 app.use(express.static('public'));
-
+//hier sagen wir welche front end darf auf unsere backend kommen (cors)
+app.use (cors());
 app.get('/', (req, res) => {
 	res.send(`
     <!DOCTYPE html>
