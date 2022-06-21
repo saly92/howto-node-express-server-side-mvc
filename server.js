@@ -15,9 +15,18 @@ app.get('/', (req, res) => {
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Document</title>
+        <style>
+        body { background-color: #fff;
+        
+        }
+        a{
+            color: black;
+            text-decoration: none;
+        }
+        </style>
     </head>
     <body>
-        <h1>info site </h1>
+        <h1>info Api </h1>
         <ul>
         ${Object.keys(siteData)
 			.map((key) => {
@@ -31,6 +40,14 @@ app.get('/', (req, res) => {
     </html>
     `);
 });
+//to display data under urls
+Object.entries(siteData).forEach(entry => {
+    const key= entry[0]
+    const value= entry[1]
+    app.get(`/${key}`,(req, res) => {
+        res.send(value);
+    })
+})
 
 app.listen(port, () => {
 	console.log(`Listening at http://localhost:${port}`);
