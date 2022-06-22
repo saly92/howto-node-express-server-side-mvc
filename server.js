@@ -20,7 +20,7 @@ app.get('/', (req, res) => {
         <style>
         body { background-color: #fff;
         
-        }
+        } 
         a{
             color: black;
             text-decoration: none;
@@ -30,6 +30,7 @@ app.get('/', (req, res) => {
     <body>
         <h1>info Api </h1>
         <ul>
+       <li><a href="${fullUrl}/all">${fullUrl}/all</a></li>
         ${Object.keys(siteData)
 			.map((key) => {
 				return `<li><a href="${fullUrl}/${key}">${fullUrl}/${key}</a></li>`;
@@ -50,7 +51,9 @@ Object.entries(siteData).forEach(entry => {
         res.send(value);
     })
 })
-
+app.get('/all', (req, res) => {
+    res.send(siteData);
+})
 app.listen(port, () => {
 	console.log(`Listening at http://localhost:${port}`);
 });
